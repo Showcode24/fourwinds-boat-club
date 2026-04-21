@@ -1,130 +1,247 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { gallery } from '@/lib/data'
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import Image from "next/image";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
-    },
+const features = [
+  {
+    title: "Private Marina",
+    tagline: "MARITIME EXCELLENCE",
+    description:
+      "A sanctuary for the seafaring soul. Our world-class marina offers bespoke docking solutions and 24/7 concierge support for West Africa's most prestigious vessels.",
+    image: "/images/img/01 Great Room View 1.png",
   },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
+  {
+    title: "Private Jetties",
+    tagline: "SEAMLESS ACCESS",
+    description:
+      "Experience the ultimate convenience with direct lagoon access. Our private jetties are designed for effortless arrivals and departures, ensuring you spend more time on the water.",
+    image: "/images/img/02 Great Room View 2.png",
   },
-}
+  {
+    title: "Fine Dining",
+    tagline: "CURATED FLAVORS",
+    description:
+      "Indulge in a world-class culinary journey where local ingredients meet international mastery. Panoramic waterfront views set the stage for unforgettable gastronomic experiences.",
+    image: "/images/img/03 Great Room View 3.png",
+  },
+  {
+    title: "Waterfront Living",
+    tagline: "ICONIC VIEWS",
+    description:
+      "Where modern architecture meets the serenity of the Lagos lagoon. Every corner is curated to inspire, offering a lifestyle that is as breathtaking as the horizon.",
+    image: "/images/img/04 Great Room View 4.png",
+  },
+  {
+    title: "Helipad Access",
+    tagline: "ELEVATED ARRIVALS",
+    description:
+      "Bypass the city traffic. Arrive directly at the marina via our private helipad, designed exclusively for residents who value time, security, and absolute privacy.",
+    image: "/images/img/07 Restaurant View 2.png",
+  },
+  {
+    title: "Executive Lounge",
+    tagline: "PREMIUM COMFORT",
+    description:
+      "A space designed for high-stakes conversations and quiet reflection. Our lounge offers the perfect blend of privacy and luxury overlooking the marina.",
+    image: "/images/img/06 Restaurant View 1.png",
+  },
+  {
+    title: "The Clubhouse",
+    tagline: "ELITE NETWORKING",
+    description:
+      "Join a community of visionaries. The exclusive Clubhouse offers premium cigar lounges, private tasting rooms, and an atmosphere of absolute discretion.",
+    image: "/images/img/08 Bar Area View 1.png",
+  },
+];
 
 export default function YachtGallery() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const totalItems = features.length;
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 60,
+    damping: 25,
+    mass: 0.8,
+  });
+
+  // FIX: Use `vw` units — CSS translateX(%) is relative to the element's OWN
+  // width (700vw), making -600% = -4200vw. Using vw gives us the exact
+  // -600vw we need to move through all 7 panels.
+  const x = useTransform(
+    smoothProgress,
+    [0, 1],
+    ["0vw", `-${(totalItems - 1) * 100}vw`],
+  );
+
   return (
-    <section id="the-club" className="py-32 px-4 bg-gradient-to-b from-slate-950 to-slate-900">
-      <div className="max-w-7xl mx-auto">
+    <section
+      ref={containerRef}
+      style={{ height: `${totalItems * 100}vh` }}
+      className="relative bg-[#020617]"
+    >
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
+          style={{ x, width: `${totalItems * 100}vw` }}
+          className="flex h-full"
         >
-          <h2 className="text-5xl md:text-7xl font-light text-white tracking-widest mb-6 text-balance">
-            The Fourwinds Experience
-          </h2>
-          <p className="text-lg md:text-xl text-slate-300 font-light max-w-2xl mx-auto">
-            Elegant spaces and world-class facilities designed for the discerning member
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.08,
-                delayChildren: 0.2,
-              },
-            },
-          }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {gallery.map((item) => (
-            <motion.div
-              key={item.id}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-              whileHover={{ y: -12 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative h-72 overflow-hidden rounded-2xl mb-6 bg-slate-800">
-                <motion.div
-                  className="absolute inset-0"
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-
-                {/* Overlay with gradient */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"
-                  initial={{ opacity: 0.3 }}
-                  whileHover={{ opacity: 0.7 }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                {/* Button appears on hover */}
-                <motion.div
-                  className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={false}
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full px-4 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-light rounded-lg transition-all duration-300 shadow-lg"
-                  >
-                    View Details
-                  </motion.button>
-                </motion.div>
-              </div>
-
-              {/* Text Content */}
-              <motion.div
-                className="space-y-2"
-                initial={{ opacity: 0.8 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <h3 className="text-xl md:text-2xl font-light text-white tracking-wide group-hover:text-amber-400 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-amber-500/80 font-light text-sm group-hover:text-amber-400 transition-colors">
-                  {item.category}
-                </p>
-              </motion.div>
-            </motion.div>
+          {features.map((feature, index) => (
+            <ImageBlock
+              key={index}
+              index={index}
+              total={totalItems}
+              progress={smoothProgress}
+              feature={feature}
+            />
           ))}
         </motion.div>
+
+        {/* CONTENT LAYER */}
+        <div className="absolute inset-0 z-20 pointer-events-none">
+          <div className="max-w-7xl mx-auto h-full relative px-6 md:px-12 lg:px-0">
+            {features.map((feature, index) => (
+              <ContentBlock
+                key={index}
+                index={index}
+                total={totalItems}
+                progress={smoothProgress}
+                data={feature}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* PROGRESS INDICATOR */}
+        <div className="absolute bottom-12 right-6 md:right-20 z-30 flex items-center gap-8">
+          <div className="flex flex-col items-end">
+            <span className="text-[9px] text-white/30 tracking-[0.6em] font-bold uppercase">
+              Archive
+            </span>
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl text-[#D4AF37] font-extralight italic">
+                0{totalItems}
+              </span>
+              <span className="text-xs text-white/20">/ VII</span>
+            </div>
+          </div>
+          <div className="w-40 h-[1px] bg-white/5 relative overflow-hidden">
+            <motion.div
+              style={{ scaleX: scrollYProgress }}
+              className="absolute inset-0 bg-[#D4AF37] origin-left shadow-[0_0_10px_#D4AF37]"
+            />
+          </div>
+        </div>
       </div>
     </section>
-  )
+  );
+}
+
+function ImageBlock({ index, total, progress, feature }: any) {
+  // FIX: Use (total - 1) so panel N is perfectly centered at progress = N/(total-1),
+  // matching the x translation: at p = N/(total-1), x = -N*100vw (panel N in view).
+  const step = 1 / (total - 1);
+  const center = index * step;
+  const start = Math.max(0, center - step);
+  const end = Math.min(1, center + step);
+
+  const innerX = useTransform(progress, [start, end], ["8%", "-8%"]);
+  const scale = useTransform(progress, [start, center, end], [1.15, 1, 1.15]);
+
+  return (
+    <div className="relative h-screen w-screen flex-shrink-0 overflow-hidden">
+      <motion.div
+        style={{ scale, x: innerX }}
+        className="absolute inset-0 w-[116%] h-full -left-[8%]"
+      >
+        <Image
+          src={feature.image}
+          alt={feature.title}
+          fill
+          className="object-cover brightness-[0.3]"
+          priority={index === 0}
+        />
+      </motion.div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.4)_100%)]" />
+    </div>
+  );
+}
+
+function ContentBlock({ index, total, progress, data }: any) {
+  // FIX: Use (total - 1) steps to align with image panels.
+  // Content block N is centered at p = N/(total-1), exactly when panel N is in view.
+  const step = 1 / (total - 1);
+  const center = index * step;
+  const clamp = (v: number) => Math.max(0, Math.min(1, v));
+
+  // Fade range: 40% of the gap on each side
+  const fadeRange = step * 0.4;
+
+  const opacity = useTransform(
+    progress,
+    [
+      clamp(center - fadeRange),
+      clamp(center - fadeRange * 0.1),
+      clamp(center + fadeRange * 0.1),
+      clamp(center + fadeRange),
+    ],
+    [0, 1, 1, 0],
+  );
+
+  const titleY = useTransform(
+    progress,
+    [clamp(center - fadeRange), center],
+    [120, 0],
+  );
+
+  const descY = useTransform(
+    progress,
+    [clamp(center - fadeRange * 0.8), center],
+    [40, 0],
+  );
+
+  const taglineOpacity = useTransform(
+    progress,
+    [clamp(center - fadeRange), clamp(center - fadeRange * 0.3)],
+    [0, 1],
+  );
+
+  return (
+    <motion.div
+      style={{ opacity }}
+      className="absolute inset-0 flex flex-col justify-center pointer-events-none"
+    >
+      <div className="max-w-4xl">
+        <motion.p
+          style={{ opacity: taglineOpacity }}
+          className="text-[#D4AF37] text-[10px] md:text-xs font-bold uppercase tracking-[0.6em] mb-6"
+        >
+          {data.tagline}
+        </motion.p>
+
+        <div className="overflow-hidden mb-10">
+          <motion.h2
+            style={{ y: titleY }}
+            className="text-6xl md:text-8xl lg:text-9xl font-extralight text-white tracking-tighter leading-[0.9]"
+          >
+            {data.title}
+          </motion.h2>
+        </div>
+
+        <motion.div
+          style={{ y: descY }}
+          className="border-l border-[#D4AF37]/40 pl-8 max-w-xl"
+        >
+          <p className="text-white/50 text-sm md:text-lg font-light leading-relaxed tracking-wide">
+            {data.description}
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
 }
