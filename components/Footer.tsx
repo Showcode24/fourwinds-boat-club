@@ -119,7 +119,7 @@ export default function Footer() {
         {/* BOTTOM BAR: TECHNICAL DATA */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-8 text-[10px] font-mono tracking-widest text-slate-600">
-            <span>© 2026 FOURWINDS CLUB</span>
+            <span>© 2026 FOURWINDS BOAT CLUB</span>
             <span className="hidden md:block">
               LAT 6.4492° N / LONG 3.4736° E
             </span>

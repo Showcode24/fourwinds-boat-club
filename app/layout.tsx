@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Fourwinds Club - Premium Yacht Club Membership",
+  title: "Fourwinds Boat Club - Premium Yacht Club Membership",
   description:
     "Exclusive luxury yacht club offering premium vessel charters, memberships, and maritime experiences. Join our distinguished community of yacht enthusiasts.",
   icons: {

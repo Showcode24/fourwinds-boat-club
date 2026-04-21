@@ -45,7 +45,7 @@ export default function Navbar({ isOpen, setIsOpen }: NavbarProps) {
                 />
               </div>
               <span className="font-bold tracking-[0.5em] text-xs uppercase hidden sm:block group-hover:tracking-[0.6em] transition-all duration-500">
-                Fourwinds
+                Fourwinds Boat Club
               </span>
             </motion.a>
 
