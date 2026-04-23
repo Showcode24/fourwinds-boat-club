@@ -71,9 +71,6 @@ export default function YachtGallery() {
     mass: 0.8,
   });
 
-  // FIX: Use `vw` units — CSS translateX(%) is relative to the element's OWN
-  // width (700vw), making -600% = -4200vw. Using vw gives us the exact
-  // -600vw we need to move through all 7 panels.
   const x = useTransform(
     smoothProgress,
     [0, 1],
@@ -84,7 +81,7 @@ export default function YachtGallery() {
     <section
       ref={containerRef}
       style={{ height: `${totalItems * 100}vh` }}
-      className="relative bg-[#020617]"
+      className="relative bg-[#dee3e8]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <motion.div
@@ -120,20 +117,20 @@ export default function YachtGallery() {
         {/* PROGRESS INDICATOR */}
         <div className="absolute bottom-12 right-6 md:right-20 z-30 flex items-center gap-8">
           <div className="flex flex-col items-end">
-            <span className="text-[9px] text-white/30 tracking-[0.6em] font-bold uppercase">
+            <span className="text-[9px] text-[#4c6c84]/40 tracking-[0.6em] font-bold uppercase">
               Archive
             </span>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl text-[#D4AF37] font-extralight italic">
+              <span className="text-2xl text-[#af8f47] font-extralight italic">
                 0{totalItems}
               </span>
-              <span className="text-xs text-white/20">/ VII</span>
+              <span className="text-xs text-[#4c6c84]/30">/ VII</span>
             </div>
           </div>
-          <div className="w-40 h-[1px] bg-white/5 relative overflow-hidden">
+          <div className="w-40 h-[1px] bg-[#4c6c84]/10 relative overflow-hidden">
             <motion.div
               style={{ scaleX: scrollYProgress }}
-              className="absolute inset-0 bg-[#D4AF37] origin-left shadow-[0_0_10px_#D4AF37]"
+              className="absolute inset-0 bg-[#af8f47] origin-left shadow-[0_0_10px_#af8f47]"
             />
           </div>
         </div>
@@ -143,8 +140,6 @@ export default function YachtGallery() {
 }
 
 function ImageBlock({ index, total, progress, feature }: any) {
-  // FIX: Use (total - 1) so panel N is perfectly centered at progress = N/(total-1),
-  // matching the x translation: at p = N/(total-1), x = -N*100vw (panel N in view).
   const step = 1 / (total - 1);
   const center = index * step;
   const start = Math.max(0, center - step);
@@ -163,23 +158,22 @@ function ImageBlock({ index, total, progress, feature }: any) {
           src={feature.image}
           alt={feature.title}
           fill
-          className="object-cover brightness-[0.3]"
+          className="object-cover brightness-[0.45]" // ← darker
           priority={index === 0}
         />
       </motion.div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.4)_100%)]" />
+      {/* Darker overlays */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/30" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,0,0,0.45)_0%,transparent_65%)]" />
     </div>
   );
 }
 
 function ContentBlock({ index, total, progress, data }: any) {
-  // FIX: Use (total - 1) steps to align with image panels.
-  // Content block N is centered at p = N/(total-1), exactly when panel N is in view.
   const step = 1 / (total - 1);
   const center = index * step;
   const clamp = (v: number) => Math.max(0, Math.min(1, v));
 
-  // Fade range: 40% of the gap on each side
   const fadeRange = step * 0.4;
 
   const opacity = useTransform(
@@ -219,7 +213,7 @@ function ContentBlock({ index, total, progress, data }: any) {
       <div className="max-w-4xl">
         <motion.p
           style={{ opacity: taglineOpacity }}
-          className="text-[#D4AF37] text-[10px] md:text-xs font-bold uppercase tracking-[0.6em] mb-6"
+          className="text-[#af8f47] text-[10px] md:text-xs font-bold uppercase tracking-[0.6em] mb-6"
         >
           {data.tagline}
         </motion.p>
@@ -227,7 +221,7 @@ function ContentBlock({ index, total, progress, data }: any) {
         <div className="overflow-hidden mb-10">
           <motion.h2
             style={{ y: titleY }}
-            className="text-6xl md:text-8xl lg:text-9xl font-extralight text-white tracking-tighter leading-[0.9]"
+            className="text-6xl md:text-8xl lg:text-9xl font-extralight text-white tracking-tighter leading-[0.9]" // ← white
           >
             {data.title}
           </motion.h2>
@@ -235,9 +229,9 @@ function ContentBlock({ index, total, progress, data }: any) {
 
         <motion.div
           style={{ y: descY }}
-          className="border-l border-[#D4AF37]/40 pl-8 max-w-xl"
+          className="border-l-2 border-[#af8f47]/50 pl-8 max-w-xl" // ← pill removed
         >
-          <p className="text-white/50 text-sm md:text-lg font-light leading-relaxed tracking-wide">
+          <p className="text-white/70 text-sm md:text-lg font-light leading-relaxed tracking-wide">
             {data.description}
           </p>
         </motion.div>
