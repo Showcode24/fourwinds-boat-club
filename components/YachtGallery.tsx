@@ -10,49 +10,49 @@ const features = [
     tagline: "MARITIME EXCELLENCE",
     description:
       "A sanctuary for the seafaring soul. Our world-class marina offers bespoke docking solutions and 24/7 concierge support for West Africa's most prestigious vessels.",
-    image: "/images/img/01 Great Room View 1.png",
+    image: "/images/img/01 Great Room View.jpeg",
   },
   {
     title: "Private Jetties",
     tagline: "SEAMLESS ACCESS",
     description:
       "Experience the ultimate convenience with direct lagoon access. Our private jetties are designed for effortless arrivals and departures, ensuring you spend more time on the water.",
-    image: "/images/img/02 Great Room View 2.png",
+    image: "/images/img/02 Great Room View.jpeg",
   },
   {
     title: "Fine Dining",
     tagline: "CURATED FLAVORS",
     description:
       "Indulge in a world-class culinary journey where local ingredients meet international mastery. Panoramic waterfront views set the stage for unforgettable gastronomic experiences.",
-    image: "/images/img/03 Great Room View 3.png",
+    image: "/images/img/03 Great Room View.jpeg",
   },
   {
     title: "Waterfront Living",
     tagline: "ICONIC VIEWS",
     description:
       "Where modern architecture meets the serenity of the Lagos lagoon. Every corner is curated to inspire, offering a lifestyle that is as breathtaking as the horizon.",
-    image: "/images/img/04 Great Room View 4.png",
+    image: "/images/img/04 Great Room View.jpeg",
   },
   {
     title: "Helipad Access",
     tagline: "ELEVATED ARRIVALS",
     description:
       "Bypass the city traffic. Arrive directly at the marina via our private helipad, designed exclusively for residents who value time, security, and absolute privacy.",
-    image: "/images/img/07 Restaurant View 2.png",
+    image: "/images/img/07 Restaurant View.jpeg",
   },
   {
     title: "Executive Lounge",
     tagline: "PREMIUM COMFORT",
     description:
       "A space designed for high-stakes conversations and quiet reflection. Our lounge offers the perfect blend of privacy and luxury overlooking the marina.",
-    image: "/images/img/06 Restaurant View 1.png",
+    image: "/images/img/06 Restaurant View.jpeg",
   },
   {
     title: "The Clubhouse",
     tagline: "ELITE NETWORKING",
     description:
       "Join a community of visionaries. The exclusive Clubhouse offers premium cigar lounges, private tasting rooms, and an atmosphere of absolute discretion.",
-    image: "/images/img/08 Bar Area View 1.png",
+    image: "/images/img/08 Bar Area View.jpeg",
   },
 ];
 
