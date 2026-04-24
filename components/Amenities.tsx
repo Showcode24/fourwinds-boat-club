@@ -19,14 +19,13 @@ export default function Amenities() {
 
   const currentCategory = amenitiesByCategory[selectedCategory];
   const categoryAmenities = amenities.filter((a) =>
-    currentCategory.items.includes(a.title)
+    currentCategory.items.includes(a.title),
   );
 
   return (
-    <section id="amenities" className="py-40 bg-[#020617] text-white">
+    <section id="amenities" className="py-40 bg-[#dee3e8] text-[#4c6c84]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20">
-          
           {/* LEFT COLUMN: FIXED NAV & HEADER */}
           <div className="lg:w-1/3 lg:sticky lg:top-40 h-fit">
             <motion.div
@@ -35,12 +34,12 @@ export default function Amenities() {
               transition={{ duration: 1, ease: expo }}
               viewport={{ once: true }}
             >
-              <span className="text-[#D4AF37] text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">
+              <span className="text-[#af8f47] text-[10px] font-extrabold tracking-[0.5em] uppercase mb-4 block">
                 The Experience
               </span>
-              <h2 className="text-6xl font-extralight tracking-tighter leading-[0.9] mb-12">
+              <h2 className="text-6xl font-light tracking-tighter leading-[0.9] mb-12 text-[#4c6c84]">
                 Curated <br />
-                <span className="text-white/20 italic">Lifestyle</span>
+                <span className="text-[#4c6c84] italic">Lifestyle</span>
               </h2>
 
               <nav className="flex flex-col gap-6">
@@ -50,17 +49,19 @@ export default function Amenities() {
                     onClick={() => setSelectedCategory(index)}
                     className="group flex items-center gap-4 text-left"
                   >
-                    <div className="relative w-8 h-[1px] bg-white/10 overflow-hidden">
+                    <div className="relative w-8 h-[1px] bg-[#4c6c84]/20 overflow-hidden">
                       <motion.div
-                        animate={{ x: selectedCategory === index ? 0 : "-100%" }}
-                        className="absolute inset-0 bg-[#D4AF37]"
+                        animate={{
+                          x: selectedCategory === index ? 0 : "-100%",
+                        }}
+                        className="absolute inset-0 bg-[#af8f47]"
                       />
                     </div>
                     <span
-                      className={`text-sm tracking-[0.2em] uppercase transition-all duration-500 ${
+                      className={`text-sm font-semibold tracking-[0.2em] uppercase transition-all duration-500 ${
                         selectedCategory === index
-                          ? "text-[#D4AF37] translate-x-2"
-                          : "text-slate-500 group-hover:text-white"
+                          ? "text-[#af8f47] translate-x-2"
+                          : "text-[#4c6c84]/40 group-hover:text-[#4c6c84]"
                       }`}
                     >
                       {category.category}
@@ -80,7 +81,7 @@ export default function Amenities() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -40 }}
                 transition={{ duration: 0.8, ease: expo }}
-                className="space-y-px bg-white/5 border border-white/5"
+                className="space-y-px bg-[#4c6c84]/5 border border-[#4c6c84]/10"
               >
                 {categoryAmenities.map((amenity, index) => (
                   <motion.div
@@ -88,49 +89,49 @@ export default function Amenities() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.1 }}
-                    className="group relative bg-[#020617] p-10 md:p-14 flex flex-col md:flex-row md:items-center justify-between gap-8 hover:bg-white/[0.02] transition-colors"
+                    className="group relative bg-[#dee3e8] p-10 md:p-14 flex flex-col md:flex-row md:items-center justify-between gap-8 hover:bg-[#4c6c84]/[0.04] transition-colors"
                   >
                     <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12 flex-1">
-                      <div className="w-12 h-12 flex items-center justify-center border border-white/10 rounded-full text-[#D4AF37] group-hover:border-[#D4AF37]/50 transition-colors duration-500">
+                      <div className="w-12 h-12 flex items-center justify-center border border-[#4c6c84]/20 rounded-full text-[#af8f47] group-hover:border-[#af8f47]/50 transition-colors duration-500">
                         {getIcon(amenity.icon)}
                       </div>
                       <div className="max-w-md">
-                        <h3 className="text-2xl font-extralight tracking-tight mb-2">
+                        <h3 className="text-2xl font-normal tracking-tight mb-2 text-[#4c6c84]">
                           {amenity.title}
                         </h3>
-                        <p className="text-slate-500 text-sm font-light leading-relaxed">
+                        <p className="text-[#af8f47] text-sm font-normal leading-relaxed">
                           {amenity.description}
                         </p>
                       </div>
                     </div>
 
                     <div className="overflow-hidden h-fit">
-                      <motion.span 
+                      <motion.span
                         initial={{ y: "100%" }}
                         whileInView={{ y: 0 }}
-                        className="text-[10px] font-mono text-white/10 tracking-widest group-hover:text-[#D4AF37]/40 block transition-colors"
+                        className="text-[10px] font-mono font-semibold text-[#4c6c84] tracking-widest group-hover:text-[#af8f47]/60 block transition-colors"
                       >
                         FACILITY_0{index + 1}
                       </motion.span>
                     </div>
 
-                    {/* GSAP-STYLE HOVER LINE */}
-                    <motion.div 
-                      className="absolute left-0 bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out"
-                    />
+                    {/* HOVER LINE */}
+                    <motion.div className="absolute left-0 bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#af8f47]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
                   </motion.div>
                 ))}
               </motion.div>
             </AnimatePresence>
 
             {/* BOTTOM DECORATIVE ELEMENT */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="mt-20 flex justify-between items-center text-white/20"
+              className="mt-20 flex justify-between items-center text-[#4c6c84]"
             >
-              <div className="text-[10px] tracking-[0.8em] uppercase font-bold">Lagos Maritime Prestige</div>
-              <div className="w-20 h-px bg-white/10" />
+              <div className="text-[10px] tracking-[0.8em] uppercase font-bold">
+                Lagos Maritime Prestige
+              </div>
+              <div className="w-20 h-px bg-[#4c6c84]/15" />
             </motion.div>
           </div>
         </div>

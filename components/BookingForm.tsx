@@ -28,17 +28,16 @@ export default function BookingForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add high-end submission animation here
     console.log("Membership inquiry submitted:", formData);
   };
 
   return (
     <section
       id="contact"
-      className="py-60 bg-[#020617] text-white relative overflow-hidden"
+      className="py-60 bg-[#dee3e8] text-[#4c6c84] relative overflow-hidden"
     >
       {/* DECORATIVE BACKGROUND TEXT */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 text-[20vw] font-black text-white/[0.02] whitespace-nowrap pointer-events-none select-none">
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 text-[20vw] font-black text-[#4c6c84]/[0.04] whitespace-nowrap pointer-events-none select-none">
         INQUIRY
       </div>
 
@@ -51,15 +50,15 @@ export default function BookingForm() {
             transition={{ duration: 1, ease: expo }}
             viewport={{ once: true }}
           >
-            <span className="text-[#D4AF37] text-[10px] font-bold tracking-[0.6em] uppercase mb-6 block">
+            <span className="text-[#af8f47] text-[10px] font-extrabold tracking-[0.6em] uppercase mb-6 block">
               Admission
             </span>
-            <h2 className="text-6xl md:text-8xl font-extralight tracking-tighter leading-tight mb-12">
+            <h2 className="text-6xl md:text-8xl font-light tracking-tighter leading-tight mb-12 text-[#4c6c84]">
               Request <br />{" "}
-              <span className="text-white/20 italic">Membership</span>
+              <span className="text-[#4c6c84]/20 italic">Membership</span>
             </h2>
 
-            <div className="space-y-10 border-l border-white/10 pl-8">
+            <div className="space-y-10 border-l border-[#4c6c84]/15 pl-8">
               {[
                 {
                   icon: Mail,
@@ -78,10 +77,10 @@ export default function BookingForm() {
                 },
               ].map((item, i) => (
                 <div key={i} className="group cursor-pointer">
-                  <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1 group-hover:text-[#D4AF37] transition-colors">
+                  <p className="text-[10px] uppercase tracking-widest font-semibold text-[#4c6c84]/40 mb-1 group-hover:text-[#af8f47] transition-colors">
                     {item.label}
                   </p>
-                  <p className="text-lg font-light group-hover:translate-x-2 transition-transform duration-500">
+                  <p className="text-lg font-normal text-[#4c6c84] group-hover:translate-x-2 transition-transform duration-500">
                     {item.val}
                   </p>
                 </div>
@@ -94,7 +93,7 @@ export default function BookingForm() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: expo }}
-            className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 p-12 md:p-16 rounded-sm shadow-2xl"
+            className="relative bg-[#4c6c84]/[0.05] backdrop-blur-xl border border-[#4c6c84]/10 p-12 md:p-16 rounded-sm shadow-sm"
           >
             <form onSubmit={handleSubmit} className="space-y-12">
               {/* INPUT GROUP: NAME & EMAIL */}
@@ -113,18 +112,18 @@ export default function BookingForm() {
                       onBlur={() => setIsFocused(null)}
                       required
                       placeholder=" "
-                      className="peer w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-[#D4AF37] transition-colors font-light"
+                      className="peer w-full bg-transparent border-b border-[#4c6c84]/20 py-4 focus:outline-none focus:border-[#af8f47] transition-colors font-normal text-[#4c6c84]"
                     />
-                    <label className="absolute left-0 top-4 text-slate-500 pointer-events-none transition-all duration-500 peer-focus:-top-4 peer-focus:text-[#D4AF37] peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs uppercase tracking-widest">
+                    <label className="absolute left-0 top-4 text-[#4c6c84]/40 pointer-events-none transition-all duration-500 peer-focus:-top-4 peer-focus:text-[#af8f47] peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs uppercase tracking-widest font-semibold">
                       {field.label}
                     </label>
                   </div>
                 ))}
               </div>
 
-              {/* MEMBERSHIP TYPE SELECTOR - CUSTOM FEEL */}
+              {/* MEMBERSHIP TYPE SELECTOR */}
               <div className="relative">
-                <p className="text-[10px] uppercase tracking-widest text-[#D4AF37] mb-6">
+                <p className="text-[10px] uppercase tracking-widest font-bold text-[#af8f47] mb-6">
                   Tier of Interest
                 </p>
                 <div className="grid grid-cols-3 gap-4">
@@ -140,8 +139,8 @@ export default function BookingForm() {
                       }
                       className={`py-3 px-2 text-[10px] uppercase tracking-tighter border transition-all duration-500 ${
                         formData.membershipType === type
-                          ? "border-[#D4AF37] bg-[#D4AF37] text-black font-bold"
-                          : "border-white/10 text-slate-500 hover:border-white/40"
+                          ? "border-[#af8f47] bg-[#af8f47] text-white font-black"
+                          : "border-[#4c6c84]/15 text-[#4c6c84]/50 hover:border-[#4c6c84]/40 font-semibold"
                       }`}
                     >
                       {type}
@@ -158,15 +157,15 @@ export default function BookingForm() {
                   onChange={handleChange}
                   placeholder="Tell us about your interest..."
                   rows={4}
-                  className="w-full bg-white/5 border border-white/10 p-6 focus:outline-none focus:border-[#D4AF37] transition-all font-light text-sm resize-none"
+                  className="w-full bg-[#4c6c84]/5 border border-[#4c6c84]/10 p-6 focus:outline-none focus:border-[#af8f47] transition-all font-normal text-sm resize-none text-[#4c6c84] placeholder:text-[#4c6c84]/30"
                 />
               </div>
 
-              {/* SUBMIT BUTTON: GSAP STYLE MAGNETIC EFFECT */}
+              {/* SUBMIT BUTTON */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative w-full overflow-hidden bg-[#D4AF37] py-6 text-black flex items-center justify-center gap-4"
+                className="group relative w-full overflow-hidden bg-[#af8f47] py-6 text-white flex items-center justify-center gap-4"
               >
                 <span className="text-[11px] font-black uppercase tracking-[0.4em] relative z-10">
                   Begin Application
@@ -175,7 +174,7 @@ export default function BookingForm() {
 
                 {/* Swipe Overlay */}
                 <motion.div
-                  className="absolute inset-0 bg-white"
+                  className="absolute inset-0 bg-[#4c6c84]"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "100%" }}
                   transition={{ duration: 0.8, ease: expo }}

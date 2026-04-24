@@ -9,6 +9,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import Image from "next/image";
 
 const expo = [0.19, 1, 0.22, 1];
 
@@ -29,9 +30,14 @@ export default function Footer() {
           {/* COLUMN 1: BRAND IDENTITY */}
           <div className="lg:col-span-5 space-y-8">
             <div className="flex items-center gap-3 text-[#D4AF37]">
-              <Anchor className="w-6 h-6 stroke-[1.5]" />
-              <span className="text-xl font-light tracking-[0.4em] uppercase">
-                Fourwinds
+              <Image
+                src="/images/img/club-logo.png"
+                alt="logo"
+                width={50}
+                height={50}
+              />
+              <span className="text-xl font-normal tracking-[0.2em] uppercase">
+                Fourwinds Boat Club
               </span>
             </div>
             <p className="text-slate-400 font-light text-lg leading-relaxed max-w-sm">

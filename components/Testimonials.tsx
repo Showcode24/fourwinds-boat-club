@@ -25,16 +25,16 @@ export default function ExclusiveEvents() {
     <section
       ref={containerRef}
       id="events"
-      className="py-60 bg-[#020617] text-white"
+      className="py-60 bg-[#dee3e8] text-[#4c6c84]"
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* HEADER: CINEMATIC REVEAL */}
         <div className="mb-40 flex flex-col items-center text-center">
           <motion.span
-            initial={{ opacity: 0, tracking: "0.2em" }}
-            whileInView={{ opacity: 1, tracking: "0.8em" }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 1.5, ease: expo }}
-            className="text-[#D4AF37] text-[10px] font-bold uppercase mb-8 block"
+            className="text-[#af8f47] text-[10px] font-extrabold uppercase tracking-[0.6em] mb-8 block"
           >
             The Calendar
           </motion.span>
@@ -43,9 +43,9 @@ export default function ExclusiveEvents() {
               initial={{ y: "100%" }}
               whileInView={{ y: 0 }}
               transition={{ duration: 1.2, ease: expo }}
-              className="text-7xl md:text-9xl font-extralight tracking-tighter leading-none"
+              className="text-7xl md:text-9xl font-light tracking-tighter leading-none text-[#4c6c84]"
             >
-              Exclusive <span className="text-white/20 italic">Events</span>
+              Exclusive <span className="text-[#4c6c84]/20 italic">Events</span>
             </motion.h2>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function ExclusiveEvents() {
         {/* TIMELINE LIST */}
         <div className="relative">
           {/* Vertical Timeline Path */}
-          <div className="absolute left-0 md:left-1/2 top-0 w-[1px] h-full bg-white/5 -translate-x-1/2" />
+          <div className="absolute left-0 md:left-1/2 top-0 w-[1px] h-full bg-[#4c6c84]/10 -translate-x-1/2" />
 
           <div className="space-y-32">
             {exclusiveEvents.map((event, index) => {
@@ -70,19 +70,19 @@ export default function ExclusiveEvents() {
                   }`}
                 >
                   {/* CENTRAL INDICATOR */}
-                  <div className="absolute left-0 md:left-1/2 top-0 md:top-1/2 w-3 h-3 bg-[#D4AF37] rounded-full -translate-x-1/2 md:-translate-y-1/2 shadow-[0_0_20px_#D4AF37]" />
+                  <div className="absolute left-0 md:left-1/2 top-0 md:top-1/2 w-3 h-3 bg-[#af8f47] rounded-full -translate-x-1/2 md:-translate-y-1/2 shadow-[0_0_20px_rgba(175,143,71,0.4)]" />
 
                   {/* CONTENT SIDE */}
                   <div
                     className={`w-full md:w-[42%] ${isEven ? "md:text-right" : "md:text-left"} group`}
                   >
-                    <span className="text-[10px] font-mono text-[#D4AF37] mb-4 block tracking-widest opacity-50 group-hover:opacity-100 transition-opacity">
+                    <span className="text-[10px] font-mono font-semibold text-[#af8f47] mb-4 block tracking-widest opacity-50 group-hover:opacity-100 transition-opacity">
                       EVENT_SESSION_0{index + 1}
                     </span>
-                    <h3 className="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-6 group-hover:text-[#D4AF37] transition-colors duration-500">
+                    <h3 className="text-3xl md:text-5xl font-normal tracking-tight text-[#4c6c84] mb-6 group-hover:text-[#af8f47] transition-colors duration-500">
                       {event.name}
                     </h3>
-                    <p className="text-slate-500 font-light leading-relaxed text-sm md:text-base max-w-md ml-auto mr-0">
+                    <p className="text-[#af8f47] font-normal leading-relaxed text-sm md:text-base max-w-md ml-auto mr-0">
                       {event.description}
                     </p>
                   </div>
@@ -91,10 +91,10 @@ export default function ExclusiveEvents() {
                   <div className="w-full md:w-[42%] flex justify-center">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: isEven ? 5 : -5 }}
-                      className="w-32 h-32 md:w-48 md:h-48 border border-white/10 rounded-full flex items-center justify-center relative group cursor-crosshair"
+                      className="w-32 h-32 md:w-48 md:h-48 border border-[#4c6c84]/15 rounded-full flex items-center justify-center relative group cursor-crosshair"
                     >
-                      <div className="absolute inset-0 bg-[#D4AF37]/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                      <div className="relative z-10 text-white/20 group-hover:text-[#D4AF37] transition-colors duration-500">
+                      <div className="absolute inset-0 bg-[#af8f47]/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                      <div className="relative z-10 text-[#4c6c84]/30 group-hover:text-[#af8f47] transition-colors duration-500">
                         {getIcon(event.icon)}
                       </div>
 
@@ -104,7 +104,7 @@ export default function ExclusiveEvents() {
                           cx="50%"
                           cy="50%"
                           r="48%"
-                          stroke="#D4AF37"
+                          stroke="#af8f47"
                           strokeWidth="1"
                           fill="none"
                           strokeDasharray="10 5"
@@ -118,23 +118,23 @@ export default function ExclusiveEvents() {
           </div>
         </div>
 
-        {/* BOTTOM CALL TO ACTION: BRUTALIST STYLE */}
+        {/* BOTTOM CALL TO ACTION */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="mt-60 pt-20 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8"
+          className="mt-60 pt-20 border-t border-[#4c6c84]/15 flex flex-col md:flex-row justify-between items-center gap-8"
         >
           <div className="text-left">
-            <h4 className="text-sm font-bold tracking-[0.4em] uppercase text-white/40 mb-2">
+            <h4 className="text-sm font-bold tracking-[0.4em] uppercase text-[#4c6c84]/40 mb-2">
               Membership Access
             </h4>
-            <p className="text-xl font-light text-white">
+            <p className="text-xl font-normal text-[#4c6c84]">
               Reserved for Platinum & Gold Tiers Only.
             </p>
           </div>
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="px-10 py-4 border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-[0.5em] uppercase hover:bg-[#D4AF37] hover:text-black transition-all duration-500 cursor-pointer"
+            className="px-10 py-4 border border-[#af8f47] text-[#af8f47] text-[10px] font-black tracking-[0.5em] uppercase hover:bg-[#af8f47] hover:text-white transition-all duration-500 cursor-pointer"
           >
             Request Invitation
           </motion.div>
