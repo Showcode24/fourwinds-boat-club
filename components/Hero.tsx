@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { clubInfo } from "@/lib/data";
+import Link from "next/link";
 
 export default function Hero() {
-  const GOLDBEAM = "#D4AF37"; // Authentic Metallic Gold
+  const GOLDBEAM = "#D4AF37";
 
   const revealVariant = {
     hidden: { y: "100%", opacity: 0 },
@@ -29,7 +30,7 @@ export default function Hero() {
       id="home"
       className="relative w-full h-screen overflow-hidden bg-slate-950"
     >
-      {/* Background Layer: Slow Cinematic Expansion */}
+      {/* Background Layer */}
       <motion.div
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -53,7 +54,7 @@ export default function Hero() {
           animate="visible"
           className="max-w-6xl w-full text-center space-y-10"
         >
-          {/* Tagline Reveal */}
+          {/* Tagline */}
           <div className="overflow-hidden">
             <motion.p
               variants={revealVariant}
@@ -63,7 +64,7 @@ export default function Hero() {
             </motion.p>
           </div>
 
-          {/* Headline Reveal */}
+          {/* Headline */}
           <div className="overflow-hidden">
             <motion.h1
               variants={revealVariant}
@@ -73,7 +74,6 @@ export default function Hero() {
             </motion.h1>
           </div>
 
-          {/* Description & CTA Group */}
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 20 },
@@ -90,26 +90,35 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6">
-              {/* Primary: Tangible & Heavy */}
-              <button className="relative group px-12 py-5 bg-white text-slate-950 overflow-hidden transition-transform active:scale-95">
+              {/* Primary Link */}
+              <Link
+                href="https://youtu.be/cC0CqoljxEs?si=Qc3VVAmU2Q1DICOp"
+                target="_blank"
+                className="relative group px-12 py-5 bg-white text-slate-950 overflow-hidden transition-transform active:scale-95 flex items-center justify-center"
+              >
                 <span className="relative z-10 text-[10px] uppercase tracking-[0.2em] font-bold">
                   Explore Amenities
                 </span>
                 <div className="absolute inset-0 bg-[#D4AF37] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.22, 1, 0.36, 1]" />
-              </button>
+              </Link>
 
-              {/* Secondary: Minimalist Border */}
-              <button className="px-12 py-5 border border-white/20 text-white hover:border-white transition-colors duration-500 active:scale-95">
+              {/* Secondary PDF Link */}
+              <a
+                href="/brochure.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-12 py-5 border border-white/20 text-white hover:border-white transition-colors duration-500 active:scale-95 flex items-center justify-center"
+              >
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold">
-                  Request Brochure
+                  View Brochure
                 </span>
-              </button>
+              </a>
             </div>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Luxury Scroll Anchor */}
+      {/* Scroll Anchor */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -125,7 +134,6 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Edge Vignette for depth */}
       <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]" />
     </section>
   );

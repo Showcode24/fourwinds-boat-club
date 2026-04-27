@@ -33,13 +33,13 @@ const features = [
       "Where modern architecture meets the serenity of the Lagos lagoon. Every corner is curated to inspire, offering a lifestyle that is as breathtaking as the horizon.",
     image: "/images/img/04 Great Room View.jpeg",
   },
-  {
-    title: "Helipad Access",
-    tagline: "ELEVATED ARRIVALS",
-    description:
-      "Bypass the city traffic. Arrive directly at the marina via our private helipad, designed exclusively for residents who value time, security, and absolute privacy.",
-    image: "/images/img/07 Restaurant View.jpeg",
-  },
+  // {
+  //   title: "Helipad Access",
+  //   tagline: "ELEVATED ARRIVALS",
+  //   description:
+  //     "Bypass the city traffic. Arrive directly at the marina via our private helipad, designed exclusively for residents who value time, security, and absolute privacy.",
+  //   image: "/images/img/07 Restaurant View.jpeg",
+  // },
   {
     title: "Executive Lounge",
     tagline: "PREMIUM COMFORT",
