@@ -90,7 +90,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6">
-              {/* Primary Link */}
+              {/* Primary Link for the Hero section*/}
               <Link
                 href="https://youtu.be/cC0CqoljxEs?si=Qc3VVAmU2Q1DICOp"
                 target="_blank"
@@ -102,7 +102,7 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-[#D4AF37] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.22, 1, 0.36, 1]" />
               </Link>
 
-              {/* Secondary PDF Link */}
+              {/* Secondary Brochure Link */}
               <a
                 href="/brochure.pdf"
                 target="_blank"
