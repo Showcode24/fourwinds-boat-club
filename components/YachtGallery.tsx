@@ -31,15 +31,8 @@ const features = [
     tagline: "ICONIC VIEWS",
     description:
       "Where modern architecture meets the serenity of the Lagos lagoon. Every corner is curated to inspire, offering a lifestyle that is as breathtaking as the horizon.",
-    image: "/images/img/04 Great Room View.jpeg",
+    image: "/images/waterfront.jpeg",
   },
-  // {
-  //   title: "Helipad Access",
-  //   tagline: "ELEVATED ARRIVALS",
-  //   description:
-  //     "Bypass the city traffic. Arrive directly at the marina via our private helipad, designed exclusively for residents who value time, security, and absolute privacy.",
-  //   image: "/images/img/07 Restaurant View.jpeg",
-  // },
   {
     title: "Executive Lounge",
     tagline: "PREMIUM COMFORT",
@@ -83,7 +76,7 @@ export default function YachtGallery() {
       style={{ height: `${totalItems * 100}vh` }}
       className="relative bg-[#dee3e8]"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         <motion.div
           style={{ x, width: `${totalItems * 100}vw` }}
           className="flex h-full"
@@ -101,7 +94,7 @@ export default function YachtGallery() {
 
         {/* CONTENT LAYER */}
         <div className="absolute inset-0 z-20 pointer-events-none">
-          <div className="max-w-7xl mx-auto h-full relative px-6 md:px-12 lg:px-0">
+          <div className="h-full relative">
             {features.map((feature, index) => (
               <ContentBlock
                 key={index}
@@ -115,19 +108,19 @@ export default function YachtGallery() {
         </div>
 
         {/* PROGRESS INDICATOR */}
-        <div className="absolute bottom-12 right-6 md:right-20 z-30 flex items-center gap-8">
+        <div className="absolute bottom-6 sm:bottom-10 md:bottom-12 right-4 sm:right-10 md:right-20 z-30 flex items-center gap-4 sm:gap-8">
           <div className="flex flex-col items-end">
-            <span className="text-[9px] text-[#4c6c84]/40 tracking-[0.6em] font-bold uppercase">
+            <span className="text-[8px] sm:text-[9px] text-[#4c6c84]/40 tracking-[0.4em] sm:tracking-[0.6em] font-bold uppercase">
               Archive
             </span>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl text-[#af8f47] font-extralight italic">
+              <span className="text-xl sm:text-2xl text-[#af8f47] font-extralight italic">
                 0{totalItems}
               </span>
-              <span className="text-xs text-[#4c6c84]/30">/ VII</span>
+              <span className="text-xs text-[#4c6c84]/30">/ VI</span>
             </div>
           </div>
-          <div className="w-40 h-[1px] bg-[#4c6c84]/10 relative overflow-hidden">
+          <div className="w-20 sm:w-32 md:w-40 h-[1px] bg-[#4c6c84]/10 relative overflow-hidden">
             <motion.div
               style={{ scaleX: scrollYProgress }}
               className="absolute inset-0 bg-[#af8f47] origin-left shadow-[0_0_10px_#af8f47]"
@@ -149,7 +142,7 @@ function ImageBlock({ index, total, progress, feature }: any) {
   const scale = useTransform(progress, [start, center, end], [1.15, 1, 1.15]);
 
   return (
-    <div className="relative h-screen w-screen flex-shrink-0 overflow-hidden">
+    <div className="relative h-[100svh] w-screen flex-shrink-0 overflow-hidden">
       <motion.div
         style={{ scale, x: innerX }}
         className="absolute inset-0 w-[116%] h-full -left-[8%]"
@@ -158,11 +151,10 @@ function ImageBlock({ index, total, progress, feature }: any) {
           src={feature.image}
           alt={feature.title}
           fill
-          className="object-cover brightness-[0.45]" // ← darker
+          className="object-cover brightness-[0.45]"
           priority={index === 0}
         />
       </motion.div>
-      {/* Darker overlays */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,0,0,0.45)_0%,transparent_65%)]" />
     </div>
@@ -208,20 +200,20 @@ function ContentBlock({ index, total, progress, data }: any) {
   return (
     <motion.div
       style={{ opacity }}
-      className="absolute inset-0 flex flex-col justify-center pointer-events-none"
+      className="absolute inset-0 flex flex-col justify-center pointer-events-none px-6 sm:px-10 md:px-14 lg:px-16"
     >
-      <div className="max-w-4xl">
+      <div className="w-full max-w-4xl">
         <motion.p
           style={{ opacity: taglineOpacity }}
-          className="text-[#af8f47] text-[10px] md:text-xs font-bold uppercase tracking-[0.6em] mb-6"
+          className="text-[#af8f47] text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] sm:tracking-[0.6em] mb-4 sm:mb-6"
         >
           {data.tagline}
         </motion.p>
 
-        <div className="overflow-hidden mb-10">
+        <div className="overflow-hidden mb-6 sm:mb-8 md:mb-10">
           <motion.h2
             style={{ y: titleY }}
-            className="text-6xl md:text-8xl lg:text-9xl font-extralight text-white tracking-tighter leading-[0.9]" // ← white
+            className="text-[clamp(2.5rem,10vw,7rem)] font-extralight text-white tracking-tighter leading-[0.9]"
           >
             {data.title}
           </motion.h2>
@@ -229,9 +221,9 @@ function ContentBlock({ index, total, progress, data }: any) {
 
         <motion.div
           style={{ y: descY }}
-          className="border-l-2 border-[#af8f47]/50 pl-8 max-w-xl" // ← pill removed
+          className="border-l-2 border-[#af8f47]/50 pl-4 sm:pl-6 md:pl-8 max-w-xs sm:max-w-sm md:max-w-xl"
         >
-          <p className="text-white/70 text-sm md:text-lg font-light leading-relaxed tracking-wide">
+          <p className="text-white/70 text-xs sm:text-sm md:text-base lg:text-lg font-light leading-relaxed tracking-wide">
             {data.description}
           </p>
         </motion.div>

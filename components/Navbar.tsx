@@ -28,25 +28,33 @@ export default function Navbar({ isOpen, setIsOpen }: NavbarProps) {
       <header className="fixed top-0 w-full z-[100] transition-all duration-700 pointer-events-none">
         <div className="max-w-7xl mx-auto px-6 py-6 md:py-10">
           <div className="flex items-center justify-between pointer-events-auto">
-            {/* LOGO SECTION */}
+            {/* LOGO SECTION - Enlarged and Fixed Scaling */}
             <motion.a
               href="#home"
-              className="flex items-center gap-3 text-white group"
+              className="flex items-center gap-3 md:gap-4 text-white group pointer-events-auto"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: expo }}
             >
-              <div className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center group-hover:border-[#D4AF37] transition-colors duration-500">
+              <div className="relative w-15 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
                 <Image
                   src="/images/img/club-logo.png"
                   alt="logo"
-                  width={100}
-                  height={100}
+                  fill
+                  className="object-contain p-1"
+                  priority
                 />
               </div>
-              <span className="font-bold tracking-[0.5em] text-xs uppercase hidden sm:block group-hover:tracking-[0.6em] transition-all duration-500">
-                Fourwinds Boat Club
-              </span>
+
+              {/* Name Text - Increased sizes for maximum visibility */}
+              <div className="flex flex-col justify-center">
+                <span className="font-black tracking-[0.1em] md:tracking-[0.3em] text-lg md:text-2xl lg:text-1xl uppercase group-hover:text-[#D4AF37] transition-all duration-500 leading-tight">
+                  Fourwinds
+                </span>
+                <span className="font-medium tracking-[0.5em] text-[10px] md:text-sm uppercase text-[#D4AF37]/80">
+                  Boat Club
+                </span>
+              </div>
             </motion.a>
 
             {/* DESKTOP NAVIGATION: FLOATING CAPSULE */}
