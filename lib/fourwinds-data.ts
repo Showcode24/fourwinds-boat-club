@@ -244,17 +244,17 @@ export const fourwindsData: FourwindsData = {
       {
         text: "Squash Court / Sports",
         bgClass: "bg-[#F1F5F9]",
-        src: "/images/img/sports.png",
+        src: "/images/img/sports.PNG",
       },
       {
         text: "Children's Play Area",
         bgClass: "bg-[#E2E8F0]",
-        src: "/images/img/children.png",
+        src: "/images/img/children.PNG",
       },
       {
         text: "Spa / Massage",
         bgClass: "bg-[#CBD5E1]",
-        src: "/images/img/spa.png",
+        src: "/images/img/spa.PNG",
       },
     ],
   },
@@ -340,7 +340,7 @@ export const fourwindsData: FourwindsData = {
       main: {
         text: "Map / Satellite View of Lekki",
         bgClass: "bg-[#BAE6FD]",
-        src: "/images/img/location.png",
+        src: "/images/img/location.PNG",
       },
       secondary: [
         {

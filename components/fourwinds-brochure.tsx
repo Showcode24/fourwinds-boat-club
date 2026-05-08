@@ -358,7 +358,7 @@ const FourwindsBrochure = ({ data }: FourwindsBrochureProps) => {
               className="w-full lg:w-1/2 order-first lg:order-last"
             >
               <Image
-                src="/images/img/intro-section.png"
+                src="/images/img/intro-section.PNG"
                 alt="Intro section image"
                 width={1000}
                 height={750}
@@ -402,7 +402,7 @@ const FourwindsBrochure = ({ data }: FourwindsBrochureProps) => {
 
             <AnimatedSection delay={0.15} className="w-full lg:w-1/2">
               <Image
-                src="/images/img/elegance-section.png"
+                src="/images/img/elegance-section.PNG"
                 alt="Nautical elegance"
                 width={1000}
                 height={700}
@@ -532,7 +532,7 @@ const FourwindsBrochure = ({ data }: FourwindsBrochureProps) => {
 
             <AnimatedSection delay={0.15} className="w-full lg:w-1/2">
               <Image
-                src="/images/img/executive.png"
+                src="/images/img/executive.PNG"
                 alt={data.executiveOverview.imageText}
                 width={1000}
                 height={750}
@@ -561,7 +561,7 @@ const FourwindsBrochure = ({ data }: FourwindsBrochureProps) => {
             </AnimatedSection>
             <AnimatedSection delay={0.15} className="w-full lg:w-1/2">
               <Image
-                src="/images/img/membership.png"
+                src="/images/img/membership.PNG"
                 alt={data.membership.headerImageText}
                 width={1000}
                 height={450}
@@ -760,7 +760,7 @@ const FourwindsBrochure = ({ data }: FourwindsBrochureProps) => {
       <section className="flex flex-col lg:flex-row">
         <div className="order-2 lg:order-1 w-full lg:w-1/2 h-[350px] md:h-[450px] lg:h-auto lg:min-h-[600px]">
           <Image
-            src="/images/img/experience.png"
+            src="/images/img/experience.PNG"
             alt={data.experience.sideImageText}
             width={1000}
             height={800}
