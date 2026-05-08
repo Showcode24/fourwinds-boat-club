@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
 
           {/* COLUMN 2: ARCHITECTURAL NAV */}
-          <div className="lg:col-span-3 space-y-8">
+          {/* <div className="lg:col-span-3 space-y-8">
             <h4 className="text-[10px] uppercase tracking-[0.5em] text-[#D4AF37] font-bold">
               The Club
             </h4>
@@ -76,10 +76,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* COLUMN 3: GLOBAL ACCESS */}
-          <div className="lg:col-span-3 space-y-8">
+          {/* <div className="lg:col-span-3 space-y-8">
             <h4 className="text-[10px] uppercase tracking-[0.5em] text-[#D4AF37] font-bold">
               Membership
             </h4>
@@ -104,10 +104,10 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* COLUMN 4: SCROLL TO TOP */}
-          <div className="lg:col-span-1 flex lg:justify-end items-start">
+          {/* <div className="lg:col-span-1 flex lg:justify-end items-start">
             <button
               onClick={scrollToTop}
               className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group hover:border-[#D4AF37] transition-colors"
@@ -119,7 +119,7 @@ export default function Footer() {
                 <ArrowUpRight className="w-4 h-4 text-[#D4AF37]" />
               </motion.div>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* BOTTOM BAR: TECHNICAL DATA */}
