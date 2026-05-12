@@ -174,7 +174,7 @@ export const fourwindsData: FourwindsData = {
     title: "Fourwinds",
     subtitle: "Boat Club",
     leadParagraph:
-      "A new, exclusive marina and waterfront members boat club built for the preserve of Lagos' elite.",
+      "A new exclusive marina and waterfront members boat club built for the preserve of Lagos' elite.",
     description1:
       "Fourwinds Boat Club is designed to encapsulate the ultimate modern waterfront architecture. It sits at the intersection of hospitality, premium real estate, member-led influence, and full-service marine recreation.",
     description2:

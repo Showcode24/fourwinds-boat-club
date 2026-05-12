@@ -5,6 +5,7 @@ import type { FourwindsData, SlideData } from "@/lib/fourwinds-data";
 import Image from "next/image";
 import BookingForm from "./BookingForm";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 interface FourwindsBrochureProps {
   data: FourwindsData;
@@ -246,8 +247,10 @@ const FourwindsBrochure = ({ data }: FourwindsBrochureProps) => {
   return (
     <div className="bg-[#FAF8F5] text-[#1A1A1A] font-sans text-base md:text-lg lg:text-xl leading-relaxed overflow-x-hidden">
       {/* ==================== COVER SECTION ==================== */}
+      <Navbar />
       <section className="bg-gradient-to-br from-[#0B1420] via-[#0A1628] to-[#0D1B2A] text-white px-5 md:px-8 lg:px-12 py-20 md:py-28 lg:py-36 min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden">
         {/* Ambient lighting overlay */}
+
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(201,169,98,0.1)_0%,transparent_60%)] pointer-events-none" />
 
         <AnimatedSection>
@@ -318,14 +321,17 @@ const FourwindsBrochure = ({ data }: FourwindsBrochureProps) => {
       {/* ==================== INTRO SECTION ==================== */}
       <section className="py-16 md:py-24 lg:py-32 xl:py-40">
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+          <div className="text-center mb-10 md:mb-14 lg:mb-16">
+            <h2 className="font-serif text-[#0B1420] text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-2 md:mb-3 tracking-tight">
+              {data.intro.title}
+            </h2>
+            <h3 className="font-serif text-[#162438] text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light">
+              {data.intro.subtitle}
+            </h3>
+          </div>
+
           <div className="flex flex-col lg:flex-row gap-10 md:gap-16 lg:gap-20 xl:gap-24 items-center">
             <AnimatedSection className="w-full lg:w-1/2 lg:max-w-xl">
-              <h2 className="font-serif text-[#0B1420] text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-2 md:mb-3 tracking-tight">
-                {data.intro.title}
-              </h2>
-              <h3 className="font-serif text-[#162438] text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-6 md:mb-8 lg:mb-10 font-light">
-                {data.intro.subtitle}
-              </h3>
               <div className="w-12 md:w-16 h-0.5 bg-gradient-to-r from-[#C9A962] to-transparent mb-8 md:mb-10 lg:mb-12" />
 
               <p className="text-lg md:text-xl lg:text-2xl font-medium text-[#1A1A1A] mb-5 md:mb-6 leading-snug tracking-tight">

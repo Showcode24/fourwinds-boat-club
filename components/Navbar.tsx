@@ -2,192 +2,233 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { navigationItems } from "@/lib/data";
-import { Anchor, Menu, X, Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import Image from "next/image";
-
-interface NavbarProps {
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}
 
 const expo = [0.19, 1, 0.22, 1];
 
-export default function Navbar({ isOpen, setIsOpen }: NavbarProps) {
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll logic for the floating "dock" effect
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      <header className="fixed top-0 w-full z-[100] transition-all duration-700 pointer-events-none">
-        <div className="max-w-7xl mx-auto px-6 py-6 md:py-10">
-          <div className="flex items-center justify-between pointer-events-auto">
-            {/* LOGO SECTION - Enlarged and Fixed Scaling */}
-            <motion.a
-              href="#home"
-              className="flex items-center gap-3 md:gap-4 text-white group pointer-events-auto"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: expo }}
-            >
-              <div className="relative w-15 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
-                <Image
-                  src="/images/img/club-logo.png"
-                  alt="logo"
-                  fill
-                  className="object-contain p-1"
-                  priority
-                />
-              </div>
-
-              {/* Name Text - Increased sizes for maximum visibility */}
-              <div className="flex flex-col justify-center">
-                <span className="font-black tracking-[0.1em] md:tracking-[0.3em] text-lg md:text-2xl lg:text-1xl uppercase group-hover:text-[#D4AF37] transition-all duration-500 leading-tight">
-                  Fourwinds
-                </span>
-                <span className="font-medium tracking-[0.5em] text-[10px] md:text-sm uppercase text-[#D4AF37]/80">
-                  Boat Club
-                </span>
-              </div>
-            </motion.a>
-
-            {/* DESKTOP NAVIGATION: FLOATING CAPSULE */}
-            <motion.nav
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`hidden md:flex items-center gap-1 px-2 py-2 rounded-full border transition-all duration-700 ${
-                scrolled
-                  ? "bg-black/80 backdrop-blur-2xl border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                  : "bg-transparent border-transparent"
-              }`}
-            >
-              {navigationItems.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="relative px-6 py-2 text-[10px] uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors group font-bold"
+      {/* HEADER */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
+          scrolled
+            ? "bg-[#020617]/90 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_40px_rgba(0,0,0,0.6)]"
+            : "bg-transparent border-b border-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-5 md:px-10">
+          <div className="h-16 md:h-20 flex items-center justify-between">
+            {/* desktop nav */}
+            <nav className="hidden md:flex items-center gap-1">
+              {navigationItems.map((item, i) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    item.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: i * 0.1,
+                    duration: 0.8,
+                    ease: expo,
+                  }}
+                  className="px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors duration-300"
                 >
-                  {item}
-                  <motion.span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-[#D4AF37] group-hover:w-1/2 transition-all duration-500" />
-                </a>
+                  {item.label}
+                </motion.a>
               ))}
+            </nav>
 
-              {/* PRIMARY CALL TO ACTION */}
-              <button className="ml-4 px-8 py-2.5 bg-[#D4AF37] text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-white hover:scale-105 transition-all duration-500 shadow-lg shadow-[#D4AF37]/20">
-                Inquire
-              </button>
-            </motion.nav>
+            {/* desktop CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.4,
+                duration: 0.6,
+                ease: expo,
+              }}
+              className="hidden md:block"
+            >
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-7 py-2.5 rounded-full border border-[#D4AF37]/60 text-[#D4AF37] text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#D4AF37] hover:text-black transition-all"
+              >
+                Complete Form
+                <span className="w-1 h-1 rounded-full bg-[#D4AF37]" />
+              </a>
+            </motion.div>
 
-            {/* MENU TOGGLE BUTTON */}
+            {/* mobile hamburger */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-[110] w-12 h-12 flex items-center justify-center rounded-full border border-white/10 bg-black/20 backdrop-blur-md text-white hover:border-[#D4AF37] transition-colors overflow-hidden"
+              aria-label="Toggle menu"
+              className="md:hidden ml-auto relative z-[200] w-10 h-10 flex flex-col justify-center items-center gap-[6px]"
             >
-              <motion.div
-                animate={{ rotate: isOpen ? 90 : 0 }}
-                transition={{ duration: 0.6, ease: expo }}
-              >
-                {isOpen ? (
-                  <X className="w-5 h-5 stroke-[1.5]" />
-                ) : (
-                  <Menu className="w-5 h-5 stroke-[1.5]" />
-                )}
-              </motion.div>
+              <motion.span
+                animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  ease: expo,
+                }}
+                className="block w-6 h-[2px] bg-white rounded-full"
+              />
+
+              <motion.span
+                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                className="block w-4 h-[2px] bg-white/50 rounded-full"
+              />
+
+              <motion.span
+                animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  ease: expo,
+                }}
+                className="block w-6 h-[2px] bg-white rounded-full"
+              />
             </button>
           </div>
         </div>
+
+        <ScrollProgress />
       </header>
 
-      {/* FULLSCREEN OVERLAY MENU */}
+      {/* mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[90] bg-[#020617] flex flex-col justify-center items-center"
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[90] bg-[#020617] md:hidden"
           >
-            {/* BACKGROUND DECORATIVE GRID */}
-            <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none"
-              style={{
-                backgroundImage:
-                  "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-                backgroundSize: "100px 100px",
-              }}
-            />
+            {/* close */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-5 right-5 z-20 w-10 h-10 flex items-center justify-center text-white/40"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
-            {/* NAV LINKS */}
-            <div className="relative z-10 flex flex-col items-center gap-6 md:gap-10">
-              {navigationItems.map((item, i) => (
+            {/* menu */}
+            <div className="h-full flex flex-col justify-center px-5 sm:px-8">
+              <nav className="space-y-3 sm:space-y-4 max-h-[60vh] overflow-y-auto">
+                {[...navigationItems].map((item, i) => (
+                  <motion.a
+                    key={item.label}
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      item.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: i * 0.08,
+                    }}
+                    className="block px-4 py-3 sm:py-4 rounded-lg border border-white/10 hover:border-[#D4AF37]/40 group transition-all duration-300"
+                  >
+                    <span className="text-sm sm:text-base font-semibold uppercase tracking-[0.1em] text-white group-hover:text-[#D4AF37] transition-colors">
+                      {item.label}
+                    </span>
+                  </motion.a>
+                ))}
+
+                {/* Complete form */}
                 <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href="#contact"
                   onClick={() => setIsOpen(false)}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -50 }}
-                  transition={{ delay: i * 0.1, ease: expo, duration: 0.8 }}
-                  className="group relative"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: navigationItems.length * 0.08,
+                  }}
+                  className="block px-4 py-3 sm:py-4 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 hover:border-[#D4AF37]/60 group transition-all duration-300"
                 >
-                  <span className="text-5xl md:text-9xl font-bold tracking-tighter text-white/10 group-hover:text-[#D4AF37] transition-all duration-700 block">
-                    {item}
+                  <span className="text-sm sm:text-base font-semibold uppercase tracking-[0.1em] text-[#D4AF37] group-hover:text-white transition-colors">
+                    Complete Form
                   </span>
-
-                  {/* FLOATING INDEX NUMBER */}
-                  <motion.span className="absolute -top-2 -right-10 text-xs md:text-sm font-mono font-bold text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    / 0{i + 1}
-                  </motion.span>
-
-                  {/* STRIKE-THROUGH HOVER EFFECT */}
-                  <motion.div className="absolute top-1/2 left-0 w-0 h-[2px] bg-[#D4AF37] group-hover:w-full transition-all duration-700 pointer-events-none" />
                 </motion.a>
-              ))}
-
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-10 px-12 py-4 border border-[#D4AF37] text-[#D4AF37] font-bold uppercase tracking-[0.4em] text-xs hover:bg-[#D4AF37] hover:text-black transition-all"
-              >
-                Request Access
-              </motion.button>
+              </nav>
             </div>
 
-            {/* OVERLAY FOOTER */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="absolute bottom-12 flex flex-col items-center gap-6"
-            >
-              <div className="flex gap-10">
-                <a
-                  href="#"
-                  className="text-white/40 hover:text-[#D4AF37] transition-colors"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-white/40 hover:text-[#D4AF37] transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </div>
-              <p className="text-[9px] tracking-[0.6em] uppercase text-white/20 font-bold">
+            {/* footer */}
+            <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between">
+              <p className="text-[9px] tracking-[0.3em] uppercase text-white/20 font-bold">
                 Lagos Maritime Elite
               </p>
-            </motion.div>
+
+              <div className="flex gap-5">
+                <a href="#" className="text-white/30 hover:text-[#D4AF37]">
+                  <Instagram className="w-4 h-4" />
+                </a>
+
+                <a href="#" className="text-white/30 hover:text-[#D4AF37]">
+                  <Linkedin className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+/* scroll progress */
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      const el = document.documentElement;
+
+      const current = el.scrollTop;
+      const max = el.scrollHeight - el.clientHeight;
+
+      setProgress(max > 0 ? current / max : 0);
+    };
+
+    window.addEventListener("scroll", update, { passive: true });
+
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  return (
+    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/[0.03]">
+      <motion.div
+        className="h-full bg-[#D4AF37]"
+        style={{
+          scaleX: progress,
+          transformOrigin: "left",
+        }}
+      />
+    </div>
   );
 }
