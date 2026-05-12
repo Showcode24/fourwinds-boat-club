@@ -93,7 +93,7 @@ export default function MembershipConfirmationEmail({
                   Questions? Reach us directly
                 </Text>
                 <Text className="text-slate-600 text-sm font-medium">
-                  josiyi@fourwinds.club
+                  josiyi@fourwindsboatclub.com
                   <br />
                   <span className="text-slate-500 font-light">
                     +234 803 575 2563
