@@ -131,7 +131,7 @@ export default function Footer() {
             </span>
           </div>
 
-          <div className="flex gap-10 text-[10px] uppercase tracking-[0.2em] font-bold text-slate-500">
+          {/* <div className="flex gap-10 text-[10px] uppercase tracking-[0.2em] font-bold text-slate-500">
             <a href="#" className="hover:text-white transition-colors">
               Privacy
             </a>
@@ -141,7 +141,7 @@ export default function Footer() {
             <a href="#" className="hover:text-white transition-colors">
               Concierge
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

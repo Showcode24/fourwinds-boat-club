@@ -96,7 +96,7 @@ export default function MembershipConfirmationEmail({
                   josiyi@fourwinds.club
                   <br />
                   <span className="text-slate-500 font-light">
-                    +234 (0) 800 FOURWINDS
+                    +234 803 575 2563
                   </span>
                 </Text>
               </Section>

@@ -92,7 +92,7 @@ export default function BookingForm() {
                 {
                   icon: Phone,
                   label: "Direct Line",
-                  val: "+234 (0) 800 FOURWINDS",
+                  val: "+234 803 575 2563",
                 },
                 {
                   icon: MapPin,
