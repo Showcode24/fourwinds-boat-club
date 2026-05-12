@@ -66,7 +66,6 @@ export default function BookingForm() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
-
           {/* LEFT SIDE */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -97,7 +96,7 @@ export default function BookingForm() {
                 {
                   icon: MapPin,
                   label: "The Club",
-                  val: "Victoria Island, Lagos, Nigeria",
+                  val: "Gracefield Island, Lekki Peninsula, Lagos, Nigeria",
                 },
               ].map((item, i) => (
                 <div key={i} className="group cursor-pointer">
@@ -151,7 +150,6 @@ export default function BookingForm() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-12">
-
                 {/* NAME & EMAIL */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   {[
