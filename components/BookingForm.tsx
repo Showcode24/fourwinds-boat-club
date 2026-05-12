@@ -86,7 +86,7 @@ export default function BookingForm() {
                 {
                   icon: Mail,
                   label: "Concierge",
-                  val: "josiyi@fourwinds.club",
+                  val: "josiyi@fourwindsboatclub.com",
                 },
                 {
                   icon: Phone,
